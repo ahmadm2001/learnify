@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<body style="margin:0; padding:0; background:#f4f6f8; font-family:Arial;">
+
+    <div
+        style="max-width:600px; margin:40px auto; background:white; border-radius:16px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+
+        <!-- HEADER -->
+        <div style="background:linear-gradient(135deg,#ff7675,#fd79a8); padding:30px; text-align:center; color:white;">
+            <h2 style="margin:0;">🧑‍🏫 New Teacher Application</h2>
+            <p style="margin-top:8px; font-size:13px;">A new instructor request received</p>
+        </div>
+
+        <!-- BODY -->
+        <div style="padding:30px; color:#333;">
+
+            <p>Hello Admin,</p>
+
+            <p>A new user applied to become a teacher. Details below:</p>
+
+            <table width="100%" cellpadding="12" cellspacing="0" style="margin-top:20px; border-collapse:collapse;">
+
+                <tr style="background:#f3f4ff;">
+                    <td><b>Username</b></td>
+                    <td>{{ username }}</td>
+                </tr>
+
+                <tr>
+                    <td><b>First Name</b></td>
+                    <td>{{ first_name }}</td>
+                </tr>
+
+                <tr style="background:#f9f9ff;">
+                    <td><b>Last Name</b></td>
+                    <td>{{ last_name }}</td>
+                </tr>
+
+                <tr>
+                    <td><b>Email</b></td>
+                    <td>{{ email }}</td>
+                </tr>
+
+                <tr style="background:#f9f9ff;">
+                    <td><b>Phone</b></td>
+                    <td>{{ phone }}</td>
+                </tr>
+
+            </table>
+
+            <div style="margin-top:25px; padding:15px; background:#fff3cd; border-radius:10px;">
+                ⚠️ Please review this application in admin panel
+            </div>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div style="padding:20px; text-align:center; font-size:12px; color:#888;">
+            © Learnify Platform
+        </div>
+
+    </div>
+
+</body>
+
+</html>

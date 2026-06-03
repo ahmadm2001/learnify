@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<body style="margin:0; padding:0; background:#f4f6f8; font-family:Arial;">
+
+    <div
+        style="max-width:600px; margin:40px auto; background:white; border-radius:16px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+
+        <!-- HEADER -->
+        <div style="background:linear-gradient(135deg,#0984E3,#74B9FF); padding:30px; text-align:center; color:white;">
+            <h2 style="margin:0;">✅ Assignment Graded</h2>
+            <p>Your results are ready</p>
+        </div>
+
+        <!-- BODY -->
+        <div style="padding:30px;">
+
+            <p>Hi <b>{{ username }}</b>,</p>
+
+            <p style="color:#555;">
+                Your assignment has been reviewed by your instructor.
+            </p>
+
+            <!-- RESULT BOX -->
+            <div style="background:#f3f8ff; padding:20px; border-radius:12px; margin-top:20px;">
+
+                <p><b>Assignment:</b> {{ assignment_title }}</p>
+                <p><b>Grade:</b> <span style="color:#0984E3; font-size:18px;">{{ grade }}</span></p>
+                <p><b>Feedback:</b></p>
+
+                <div style="background:white; padding:10px; border-radius:8px; border:1px solid #eee;">
+                    {{ feedback }}
+                </div>
+
+            </div>
+
+            <div style="text-align:center; margin-top:30px;">
+                <a href="http://localhost:5173"
+                    style="background:#0984E3; color:white; padding:12px 25px; border-radius:8px; text-decoration:none;">
+                    View Details
+                </a>
+            </div>
+
+        </div>
+
+        <div style="text-align:center; font-size:12px; padding:15px; color:#888;">
+            🎓 Keep learning with Learnify
+        </div>
+
+    </div>
+
+</body>
+
+</html>
