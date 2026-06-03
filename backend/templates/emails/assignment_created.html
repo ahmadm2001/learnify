@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<body style="margin:0; padding:0; background:#f4f6f8; font-family:Arial, sans-serif;">
+
+    <div
+        style="max-width:600px; margin:40px auto; background:#ffffff; border-radius:16px; overflow:hidden; box-shadow:0 15px 40px rgba(0,0,0,0.08);">
+
+        <!-- HEADER -->
+        <div style="background:linear-gradient(135deg,#6C5CE7,#8E7CFF); padding:30px; text-align:center; color:white;">
+            <h1 style="margin:0;">📚 New Assignment</h1>
+            <p style="margin-top:8px; opacity:0.9;">Stay on track with your course</p>
+        </div>
+
+        <!-- BODY -->
+        <div style="padding:30px;">
+
+            <p style="font-size:15px;">Hi <b>{{ username }}</b>,</p>
+
+            <p style="color:#555;">
+                A new assignment has been added to your course. Make sure to complete it before the deadline.
+            </p>
+
+            <!-- TABLE -->
+            <table width="100%" cellpadding="12" cellspacing="0"
+                style="border-collapse:collapse; margin-top:20px; border-radius:10px; overflow:hidden;">
+
+                <tr style="background:#f3f4ff;">
+                    <td style="font-weight:bold;">Course</td>
+                    <td>{{ course_title }}</td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight:bold;">Assignment</td>
+                    <td>{{ assignment_title }}</td>
+                </tr>
+
+                <tr style="background:#f9f9ff;">
+                    <td style="font-weight:bold;">Due Date</td>
+                    <td>{{ due_date }}</td>
+                </tr>
+
+            </table>
+
+            <!-- BUTTON -->
+            <div style="text-align:center; margin-top:30px;">
+                <a href="http://localhost:5173"
+                    style="background:#6C5CE7; color:white; padding:12px 25px; border-radius:8px; text-decoration:none; font-weight:bold;">
+                    View Assignment
+                </a>
+            </div>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div style="padding:20px; text-align:center; font-size:12px; color:#888; border-top:1px solid #eee;">
+            © Learnify • Learn Smarter
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body style="margin:0; padding:0; background:#f4f6f8; font-family:Arial, sans-serif;">
+
+    <div
+        style="max-width:600px; margin:40px auto; background:#ffffff; border-radius:14px; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,0.08);">
+
+        <!-- HEADER -->
+        <div style="background:linear-gradient(135deg,#6C5CE7,#8E7CFF); padding:28px; text-align:center; color:white;">
+            <h2 style="margin:0; font-size:24px;">🎓 Enrollment Successful</h2>
+            <p style="margin:8px 0 0; font-size:13px; opacity:0.9;">
+                You now have access to your new course
+            </p>
+        </div>
+
+        <!-- BODY -->
+        <div style="padding:30px; color:#333;">
+            <p style="font-size:15px;">Hi <b>{{ username }}</b>,</p>
+
+            <p style="font-size:14px; line-height:1.7;">
+                Congratulations! You have successfully enrolled in the following course:
+            </p>
+
+            <table width="100%" cellpadding="10" cellspacing="0"
+                style="border-collapse:collapse; margin-top:18px; border-radius:10px; overflow:hidden;">
+                <tr style="background:#f3f4ff;">
+                    <td style="font-weight:bold; width:35%;">Course Title</td>
+                    <td>{{ course_title }}</td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight:bold;">Instructor</td>
+                    <td>{{ teacher_name }}</td>
+                </tr>
+
+                <tr style="background:#f9f9ff;">
+                    <td style="font-weight:bold;">Price</td>
+                    <td>
+                        {% if course_price %}
+                        {{ course_price }}
+                        {% else %}
+                        Free / Not specified
+                        {% endif %}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight:bold;">Description</td>
+                    <td>{{ course_description|safe }}</td>
+                </tr>
+            </table>
+
+            <div style="text-align:center; margin-top:28px;">
+                <a href="{{ course_link }}"
+                    style="display:inline-block; padding:12px 24px; background:#6C5CE7; color:white; border-radius:8px; text-decoration:none; font-weight:bold;">
+                    View Course
+                </a>
+            </div>
+
+            <div
+                style="margin-top:24px; padding:15px; background:#eefbf3; border-radius:10px; font-size:13px; color:#1f5134;">
+                ✅ Your access has been activated successfully. You can start learning right away.
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div style="padding:20px; text-align:center; font-size:12px; color:#888; border-top:1px solid #eee;">
+            © Learnify Platform • Learn with confidence
+        </div>
+
+    </div>
+
+</body>
+
+</html>

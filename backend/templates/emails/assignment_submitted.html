@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<body style="margin:0; padding:0; background:#f4f6f8; font-family:Arial;">
+
+    <div
+        style="max-width:600px; margin:40px auto; background:white; border-radius:16px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+
+        <!-- HEADER -->
+        <div style="background:linear-gradient(135deg,#00B894,#55EFC4); padding:30px; text-align:center; color:white;">
+            <h2 style="margin:0;">📥 Assignment Submitted</h2>
+            <p style="margin-top:8px;">A student just submitted work</p>
+        </div>
+
+        <!-- BODY -->
+        <div style="padding:30px;">
+
+            <p>Hi <b>{{ teacher_name }}</b>,</p>
+
+            <p style="color:#555;">
+                A student has submitted their assignment. You can review it now.
+            </p>
+
+            <table width="100%" cellpadding="12" cellspacing="0" style="margin-top:20px; border-collapse:collapse;">
+
+                <tr style="background:#f1fff9;">
+                    <td><b>Student</b></td>
+                    <td>{{ student_name }}</td>
+                </tr>
+
+                <tr>
+                    <td><b>Assignment</b></td>
+                    <td>{{ assignment_title }}</td>
+                </tr>
+
+                <tr style="background:#f1fff9;">
+                    <td><b>Course</b></td>
+                    <td>{{ course_title }}</td>
+                </tr>
+
+            </table>
+
+            <div style="text-align:center; margin-top:30px;">
+                <a href="http://localhost:5173"
+                    style="background:#00B894; color:white; padding:12px 25px; border-radius:8px; text-decoration:none;">
+                    Review Submission
+                </a>
+            </div>
+
+        </div>
+
+        <div style="text-align:center; font-size:12px; padding:15px; color:#888;">
+            © Learnify Platform
+        </div>
+
+    </div>
+
+</body>
+
+</html>

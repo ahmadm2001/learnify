@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<body style="margin:0; padding:0; background:#f4f6f8; font-family:Arial, sans-serif;">
+
+    <div
+        style="max-width:600px; margin:40px auto; background:#ffffff; border-radius:16px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+
+        <!-- HEADER -->
+        <div style="background:linear-gradient(135deg,#6C5CE7,#8E7CFF); padding:30px; text-align:center; color:white;">
+            <h2 style="margin:0;">🎥 Live Session Scheduled</h2>
+            <p style="margin-top:8px; font-size:13px; opacity:0.9;">
+                Your class is coming soon
+            </p>
+        </div>
+
+        <!-- BODY -->
+        <div style="padding:30px; color:#333;">
+
+            <p style="font-size:15px;">Hi {{ username }},</p>
+
+            <p style="font-size:14px;">
+                A new live session has been scheduled for your course.
+            </p>
+
+            <!-- TABLE -->
+            <table width="100%" cellpadding="12" cellspacing="0"
+                style="border-collapse:collapse; margin-top:20px; border-radius:10px; overflow:hidden;">
+
+                <tr style="background:#f3f4ff;">
+                    <td style="font-weight:bold;">Course</td>
+                    <td>{{ course_title }}</td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight:bold;">Lecture</td>
+                    <td>{{ lecture_title }}</td>
+                </tr>
+
+                <tr style="background:#f9f9ff;">
+                    <td style="font-weight:bold;">Start Time</td>
+                    <td>{{ start_time }}</td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight:bold;">End Time</td>
+                    <td>{{ end_time }}</td>
+                </tr>
+
+            </table>
+
+            <!-- INFO BOX -->
+            <div style="margin-top:25px; padding:15px; background:#e7f3ff; border-radius:10px; color:#0b5394;">
+                ⏰ Make sure to join on time. The session link will be available when it starts.
+            </div>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div style="padding:20px; text-align:center; font-size:12px; color:#888; border-top:1px solid #eee;">
+            © Learnify Platform • Live Learning Experience
+        </div>
+
+    </div>
+
+</body>
+
+</html>

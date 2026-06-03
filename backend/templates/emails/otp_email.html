@@ -1,0 +1,32 @@
+<div style="font-family: Arial, sans-serif; background:#f4f6f8; padding:30px;">
+    <div
+        style="max-width:600px; margin:auto; background:white; border-radius:12px; padding:30px; box-shadow:0 10px 25px rgba(0,0,0,0.08);">
+
+        <h2 style="color:#4f46e5;">🔐 Password Reset Code</h2>
+
+        <p>Hi <b>{{ username }}</b>,</p>
+
+        <p>You requested to reset your password.</p>
+
+        <p style="font-size:15px;">Use the following OTP code:</p>
+
+        <div style="
+        font-size:28px;
+        font-weight:bold;
+        letter-spacing:6px;
+        margin:20px 0;
+        color:#4f46e5;
+    ">
+            {{ otp }}
+        </div>
+
+        <p style="color:#555;">This code will expire in a few minutes.</p>
+
+        <hr style="margin:30px 0; border:none; border-top:1px solid #eee;" />
+
+        <p style="font-size:13px; color:#888;">
+            © Learnify • Secure learning platform
+        </p>
+
+    </div>
+</div>
