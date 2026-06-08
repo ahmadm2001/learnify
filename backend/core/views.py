@@ -3,6 +3,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework import viewsets, permissions, generics
+from django.core.mail import send_mail
+from django.conf import settings
 
 from .models import Course
 from .serializers import CourseSerializer
@@ -184,3 +186,47 @@ def admin_delete_user(request, user_id):
 
     user.delete()
     return Response({"message": "User deleted successfully"})
+
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def contact_us(request):
+    first_name = request.data.get("first_name", "").strip()
+    last_name = request.data.get("last_name", "").strip()
+    email = request.data.get("email", "").strip()
+    phone = request.data.get("phone", "").strip()
+    message = request.data.get("message", "").strip()
+
+    if not first_name or not last_name or not email or not message:
+        return Response(
+            {"error": "First name, last name, email, and message are required."},
+            status=400,
+        )
+
+    context = {
+        "first_name": first_name,
+        "last_name": last_name,
+        "sender_email": email,
+        "phone": phone,
+        "message": message,
+    }
+
+    html_message = render_to_string("emails/contact_message.html", context)
+    plain_message = strip_tags(html_message)
+
+    subject = f"New Contact Message from {first_name} {last_name}"
+
+    email_msg = EmailMultiAlternatives(
+        subject=subject,
+        body=plain_message,
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        to=["learnifyam@gmail.com"],
+        reply_to=[email] if email else None,
+    )
+    email_msg.attach_alternative(html_message, "text/html")
+    email_msg.send(fail_silently=False)
+
+    return Response({"message": "Email sent successfully"})

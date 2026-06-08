@@ -1,12 +1,7 @@
-.venv/
+﻿.venv/
+node_modules/
+.env
 __pycache__/
 *.pyc
-.env
-node_modules/
 dist/
 build/
-.vscode/
-.idea/
-.DS_Store
-backend/media/
-*.sqlite3
