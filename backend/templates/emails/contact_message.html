@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>New Contact Message</title>
+</head>
+
+<body style="margin:0; padding:0; background:#f6f7fb; font-family:Arial, sans-serif;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="background:#f6f7fb; padding:30px 0;">
+        <tr>
+            <td align="center">
+                <table width="640" cellpadding="0" cellspacing="0"
+                    style="max-width:640px; width:100%; background:#ffffff; border-radius:18px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.08);">
+
+                    <tr>
+                        <td
+                            style="background:linear-gradient(135deg, #6d5dfc, #5b4ad6); padding:32px 36px; color:#ffffff;">
+                            <h1 style="margin:0; font-size:30px; font-weight:800;">New Contact Message</h1>
+                            <p style="margin:10px 0 0; font-size:15px; opacity:0.9;">
+                                A new message was submitted from the Learnify contact form.
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding:32px 36px;">
+                            <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+                                <tr>
+                                    <td
+                                        style="padding:12px 0; border-bottom:1px solid #eceef5; width:160px; color:#667085; font-weight:700;">
+                                        First Name
+                                    </td>
+                                    <td style="padding:12px 0; border-bottom:1px solid #eceef5; color:#101828;">
+                                        {{ first_name }}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td
+                                        style="padding:12px 0; border-bottom:1px solid #eceef5; color:#667085; font-weight:700;">
+                                        Last Name
+                                    </td>
+                                    <td style="padding:12px 0; border-bottom:1px solid #eceef5; color:#101828;">
+                                        {{ last_name }}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td
+                                        style="padding:12px 0; border-bottom:1px solid #eceef5; color:#667085; font-weight:700;">
+                                        Email
+                                    </td>
+                                    <td style="padding:12px 0; border-bottom:1px solid #eceef5; color:#101828;">
+                                        <a href="mailto:{{ sender_email }}"
+                                            style="color:#6d5dfc; text-decoration:none;">{{ sender_email }}</a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td
+                                        style="padding:12px 0; border-bottom:1px solid #eceef5; color:#667085; font-weight:700;">
+                                        Phone
+                                    </td>
+                                    <td style="padding:12px 0; border-bottom:1px solid #eceef5; color:#101828;">
+                                        {{ phone|default:"Not provided" }}
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <div style="margin-top:28px;">
+                                <h3 style="margin:0 0 12px; color:#101828; font-size:18px;">Message</h3>
+                                <div
+                                    style="background:#f8f7ff; border:1px solid #ebe9fe; border-radius:14px; padding:18px; color:#344054; line-height:1.8; white-space:pre-line;">
+                                    {{ message }}
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td
+                            style="padding:20px 36px; background:#fafafe; border-top:1px solid #eceef5; color:#98a2b3; font-size:13px; text-align:center;">
+                            Learnify Contact Form Notification
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

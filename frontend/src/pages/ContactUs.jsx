@@ -1,5 +1,7 @@
 // src/pages/ContactUs.jsx
 import { useState } from "react";
+import API from "../lib/api";
+import Swal from "sweetalert2";
 import {
     Box,
     Container,
@@ -15,13 +17,14 @@ import CallRoundedIcon from "@mui/icons-material/CallRounded";
 
 export default function ContactUs() {
     const [form, setForm] = useState({
-        name: "",
-        company: "",
+        fname: "",
+        lname: "",
         email: "",
         phone: "",
-        address: "",
         message: "",
     });
+
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
         setForm((prev) => ({
@@ -30,14 +33,50 @@ export default function ContactUs() {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        alert("Message sent 🚀");
+
+        try {
+            setLoading(true);
+
+            await API.post("/api/contact/", {
+                first_name: form.fname,
+                last_name: form.lname,
+                email: form.email,
+                phone: form.phone,
+                message: form.message,
+            });
+
+            await Swal.fire({
+                icon: "success",
+                title: "Message sent successfully",
+                text: "Your message has been delivered to Learnify.",
+                confirmButtonColor: "#6d5dfc",
+            });
+
+            setForm({
+                fname: "",
+                lname: "",
+                email: "",
+                phone: "",
+                message: "",
+            });
+        } catch (error) {
+            console.error("Contact form error:", error);
+
+            Swal.fire({
+                icon: "error",
+                title: "Failed to send message",
+                text: "Something went wrong. Please try again.",
+                confirmButtonColor: "#6d5dfc",
+            });
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
         <Box sx={{ bgcolor: "#f8f7ff", minHeight: "100vh" }}>
-
             {/* ================= HEADER ================= */}
             <Box sx={{ position: "relative", overflow: "hidden", py: 12 }}>
                 <Box
@@ -107,10 +146,9 @@ export default function ContactUs() {
                         background: "white",
                         boxShadow: "0 40px 120px rgba(0,0,0,0.12)",
                         minHeight: { xs: "auto", md: "720px" },
-                        flexDirection: { xs: "column", lg: "row" }// 🔥 KEY FIX
+                        flexDirection: { xs: "column", lg: "row" },
                     }}
                 >
-
                     {/* LEFT PANEL */}
                     <Box
                         sx={{
@@ -135,7 +173,7 @@ export default function ContactUs() {
 
                         <Box display="flex" alignItems="center" mb={2}>
                             <EmailRoundedIcon sx={{ mr: 1 }} />
-                            <Typography> learnifyam@gmail.com</Typography>
+                            <Typography>learnifyam@gmail.com</Typography>
                         </Box>
 
                         <Box display="flex" alignItems="center">
@@ -152,7 +190,7 @@ export default function ContactUs() {
                             p: { xs: 3, md: 5 },
                             display: "flex",
                             flexDirection: "column",
-                            justifyContent: { xs: "flex-start", md: "center" }, // 🔥 MAGIC LINE
+                            justifyContent: { xs: "flex-start", md: "center" },
                         }}
                     >
                         <Typography fontSize="1.8rem" fontWeight={900} mb={3}>
@@ -171,23 +209,52 @@ export default function ContactUs() {
                             {/* TOP INPUTS */}
                             <Grid container spacing={3}>
                                 <Grid item xs={12} md={6}>
-                                    <TextField fullWidth label="First Name" name="fname" onChange={handleChange} sx={inputStyle} />
+                                    <TextField
+                                        fullWidth
+                                        label="First Name"
+                                        name="fname"
+                                        value={form.fname}
+                                        onChange={handleChange}
+                                        sx={inputStyle}
+                                    />
                                 </Grid>
 
                                 <Grid item xs={12} md={6}>
-                                    <TextField fullWidth label="Last Name" name="lname" onChange={handleChange} sx={inputStyle} />
+                                    <TextField
+                                        fullWidth
+                                        label="Last Name"
+                                        name="lname"
+                                        value={form.lname}
+                                        onChange={handleChange}
+                                        sx={inputStyle}
+                                    />
                                 </Grid>
 
                                 <Grid item xs={12} md={6}>
-                                    <TextField fullWidth label="Email" name="email" onChange={handleChange} sx={inputStyle} />
+                                    <TextField
+                                        fullWidth
+                                        label="Email"
+                                        name="email"
+                                        type="email"
+                                        value={form.email}
+                                        onChange={handleChange}
+                                        sx={inputStyle}
+                                    />
                                 </Grid>
 
                                 <Grid item xs={12} md={6}>
-                                    <TextField fullWidth label="Phone number" name="phone" onChange={handleChange} sx={inputStyle} />
+                                    <TextField
+                                        fullWidth
+                                        label="Phone number"
+                                        name="phone"
+                                        value={form.phone}
+                                        onChange={handleChange}
+                                        sx={inputStyle}
+                                    />
                                 </Grid>
                             </Grid>
 
-                            {/* 🔥 FULL HEIGHT MESSAGE */}
+                            {/* MESSAGE */}
                             <Box sx={{ mt: 3 }}>
                                 <TextField
                                     fullWidth
@@ -195,6 +262,7 @@ export default function ContactUs() {
                                     rows={5}
                                     label="Your Message"
                                     name="message"
+                                    value={form.message}
                                     onChange={handleChange}
                                     sx={inputStyle}
                                 />
@@ -205,11 +273,12 @@ export default function ContactUs() {
                                 sx={{
                                     pt: 3,
                                     display: "flex",
-                                    justifyContent: { xs: "center", md: "flex-end" }
+                                    justifyContent: { xs: "center", md: "flex-end" },
                                 }}
                             >
                                 <Button
                                     type="submit"
+                                    disabled={loading}
                                     sx={{
                                         px: 5,
                                         py: 1.6,
@@ -220,20 +289,24 @@ export default function ContactUs() {
                                         color: "white",
                                         boxShadow: "0 15px 35px rgba(109,93,252,0.4)",
                                         transition: "0.3s",
-
                                         "&:hover": {
                                             transform: "translateY(-2px)",
                                             boxShadow: "0 20px 45px rgba(109,93,252,0.5)",
                                         },
+                                        "&.Mui-disabled": {
+                                            color: "white",
+                                            opacity: 0.8,
+                                        },
                                     }}
                                 >
-                                    Send Message
+                                    {loading ? "Sending..." : "Send Message"}
                                 </Button>
                             </Box>
                         </Box>
                     </Box>
                 </Grid>
             </Container>
+
             <Footer />
         </Box>
     );

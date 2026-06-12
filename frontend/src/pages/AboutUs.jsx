@@ -24,7 +24,8 @@ import PublicRoundedIcon from "@mui/icons-material/PublicRounded";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
-
+import moradImg from "../assets/morad.jpeg";
+import ahmedImg from "../assets/ahmed.jpeg";
 const stats = [
     { value: "10K+", label: "Active Learners" },
     { value: "500+", label: "Premium Courses" },
@@ -89,19 +90,16 @@ const values = [
 
 const team = [
     {
-        name: "Sarah Johnson",
-        role: "Lead Mentor",
-        image: "https://randomuser.me/api/portraits/women/44.jpg",
+        name: "Morad Khamaesy",
+        role: "Software Engineering Student",
+        image: moradImg,
+        desc: "26 years old, a Software Engineering student at Sami Shamoon College of Engineering in Be’er Sheva, Negev.",
     },
     {
-        name: "Michael Chen",
-        role: "Course Director",
-        image: "https://randomuser.me/api/portraits/men/32.jpg",
-    },
-    {
-        name: "Emma Williams",
-        role: "Learning Strategist",
-        image: "https://randomuser.me/api/portraits/women/68.jpg",
+        name: "Ahmed Mashal",
+        role: "Software Engineering Student",
+        image: ahmedImg,
+        desc: "25 years old, a Software Engineering student at Sami Shamoon College of Engineering in Be’er Sheva, Negev.",
     },
 ];
 
@@ -769,7 +767,7 @@ export default function AboutUs() {
                 </Container>
             </Box>
 
-            
+
 
             {/* VALUES */}
             <Container maxWidth="lg" sx={{ py: { xs: 5, md: 8 } }}>
@@ -1101,38 +1099,35 @@ export default function AboutUs() {
                             <Card
                                 sx={{
                                     width: "100%",
-                                    maxWidth: 280,        // ✅ SAME WIDTH
-                                    height: 320,          // ✅ SAME HEIGHT
-
+                                    maxWidth: 280,
+                                    height: 320,
                                     borderRadius: "26px",
                                     textAlign: "center",
-
-                                    background:
-                                        i === 1
-                                            ? "linear-gradient(135deg, #8b7cff, #6d5dfc)"
-                                            : "white",
-
-                                    color: i === 1 ? "white" : "inherit",
-
+                                    background: "white",
+                                    color: "#101828",
                                     border: "1px solid rgba(124,108,244,0.08)",
-
-                                    boxShadow:
-                                        i === 1
-                                            ? "0 25px 70px rgba(124,108,244,0.25)"
-                                            : "0 18px 50px rgba(17,24,39,0.05)",
-
+                                    boxShadow: "0 18px 50px rgba(17,24,39,0.05)",
                                     display: "flex",
                                     flexDirection: "column",
                                     justifyContent: "center",
-
                                     transition: "all .35s ease",
-
                                     "&:hover": {
                                         transform: "translateY(-10px) scale(1.02)",
-                                        boxShadow:
-                                            i === 1
-                                                ? "0 30px 80px rgba(124,108,244,0.35)"
-                                                : "0 25px 60px rgba(17,24,39,0.08)",
+                                        background: "linear-gradient(135deg, #8b7cff, #6d5dfc)",
+                                        boxShadow: "0 30px 80px rgba(124,108,244,0.35)",
+                                        "& .team-name": {
+                                            color: "white",
+                                        },
+                                        "& .team-role": {
+                                            color: "#e0dbff",
+                                        },
+                                        "& .team-desc": {
+                                            color: "rgba(255,255,255,0.85)",
+                                        },
+                                        "& .team-avatar": {
+                                            border: "3px solid rgba(255,255,255,0.5)",
+                                            boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
+                                        },
                                     },
                                 }}
                             >
@@ -1140,60 +1135,180 @@ export default function AboutUs() {
                                     <Avatar
                                         src={member.image}
                                         alt={member.name}
+                                        className="team-avatar"
                                         sx={{
                                             width: 90,
                                             height: 90,
                                             mx: "auto",
                                             mb: 2,
-
-                                            border: i === 1
-                                                ? "3px solid rgba(255,255,255,0.5)"
-                                                : "3px solid rgba(124,108,244,0.15)",
-
-                                            boxShadow:
-                                                i === 1
-                                                    ? "0 10px 25px rgba(0,0,0,0.2)"
-                                                    : "0 12px 30px rgba(124,108,244,0.18)",
+                                            border: "3px solid rgba(124,108,244,0.15)",
+                                            boxShadow: "0 12px 30px rgba(124,108,244,0.18)",
+                                            transition: "all .35s ease",
                                         }}
                                     />
 
                                     <Typography
+                                        className="team-name"
                                         sx={{
                                             fontSize: "1.15rem",
                                             fontWeight: 900,
-                                            color: i === 1 ? "white" : "#101828",
+                                            color: "#101828",
+                                            transition: "all .35s ease",
                                         }}
                                     >
                                         {member.name}
                                     </Typography>
 
                                     <Typography
+                                        className="team-role"
                                         sx={{
                                             fontWeight: 800,
                                             mb: 1.2,
-                                            color: i === 1 ? "#e0dbff" : "#7c6cf4",
+                                            color: "#7c6cf4",
+                                            transition: "all .35s ease",
                                         }}
                                     >
                                         {member.role}
                                     </Typography>
 
                                     <Typography
+                                        className="team-desc"
                                         sx={{
                                             fontSize: "0.9rem",
                                             lineHeight: 1.6,
-                                            color: i === 1
-                                                ? "rgba(255,255,255,0.85)"
-                                                : "#667085",
+                                            color: "#667085",
+                                            transition: "all .35s ease",
                                         }}
                                     >
-                                        Passionate about helping students learn better through
-                                        clarity, structure, and strong educational design.
+                                        {member.desc}
                                     </Typography>
                                 </CardContent>
                             </Card>
                         </Grid>
                     ))}
                 </Grid>
+            </Container>
+
+            {/* ABOUT LEARNIFY */}
+            <Container maxWidth="lg" sx={{ pb: { xs: 8, md: 12 } }}>
+                <Card
+                    sx={{
+                        borderRadius: "32px",
+                        overflow: "hidden",
+                        background: "linear-gradient(180deg, #ffffff 0%, #f8f6ff 100%)",
+                        border: "1px solid rgba(124,108,244,0.10)",
+                        boxShadow: "0 20px 60px rgba(17,24,39,0.06)",
+                    }}
+                >
+                    <CardContent sx={{ p: { xs: 3, md: 6 } }}>
+                        <Box textAlign="center" mb={5}>
+                            <Chip
+                                label="About Learnify"
+                                sx={{
+                                    mb: 2,
+                                    fontWeight: 800,
+                                    color: "#6d5dfc",
+                                    background: "rgba(109,93,252,0.10)",
+                                    border: "1px solid rgba(109,93,252,0.15)",
+                                }}
+                            />
+
+                            <Typography
+                                sx={{
+                                    fontSize: { xs: "2rem", md: "2.8rem" },
+                                    fontWeight: 900,
+                                    color: "#0f172a",
+                                    lineHeight: 1.1,
+                                    mb: 2,
+                                }}
+                            >
+                                A more active and connected way to learn
+                            </Typography>
+
+                            <Typography
+                                sx={{
+                                    color: "#667085",
+                                    maxWidth: 850,
+                                    mx: "auto",
+                                    lineHeight: 1.9,
+                                    fontSize: "1rem",
+                                }}
+                            >
+                                Online learning today is mostly passive — you watch, you practice
+                                alone, and when you get stuck, there’s no one to ask.
+                                <br />
+                                <br />
+                                Learnify is a social learning platform for developers and tech learners.
+                                It brings lessons, a built-in code editor, and a community of peers into
+                                one connected experience — so learning feels active and shared, not isolated.
+                            </Typography>
+                        </Box>
+
+                        <Box textAlign="center" mb={4}>
+                            <Typography
+                                sx={{
+                                    fontSize: { xs: "1.4rem", md: "1.8rem" },
+                                    fontWeight: 800,
+                                    color: "#101828",
+                                    mb: 3,
+                                }}
+                            >
+                                What makes it different
+                            </Typography>
+                        </Box>
+
+                        <Grid container spacing={3} justifyContent="center">
+                            {[
+                                "Run code directly inside lessons - no setup required",
+                                "Ask questions tied to the exact lesson or topic",
+                                "Learn alongside a community, not alone",
+                                "AI assistant that supports you, without replacing the instructor",
+                            ].map((item, i) => (
+                                <Grid item xs={12} sm={6} key={i}>
+                                    <Card
+                                        sx={{
+                                            height: "100%",
+                                            borderRadius: "22px",
+                                            background: i === 1
+                                                ? "linear-gradient(135deg, #8b7cff, #6d5dfc)"
+                                                : "white",
+                                            color: i === 1 ? "white" : "#101828",
+                                            border: "1px solid rgba(124,108,244,0.08)",
+                                            boxShadow: i === 1
+                                                ? "0 20px 50px rgba(124,108,244,0.25)"
+                                                : "0 12px 30px rgba(17,24,39,0.05)",
+                                            transition: "all .3s ease",
+                                            "&:hover": {
+                                                transform: "translateY(-6px)",
+                                                boxShadow: i === 1
+                                                    ? "0 25px 60px rgba(124,108,244,0.3)"
+                                                    : "0 18px 40px rgba(17,24,39,0.08)",
+                                            },
+                                        }}
+                                    >
+                                        <CardContent sx={{ p: 3, display: "flex", gap: 1.5 }}>
+                                            <CheckCircleRoundedIcon
+                                                sx={{
+                                                    color: i === 1 ? "white" : "#6d5dfc",
+                                                    mt: "2px",
+                                                }}
+                                            />
+                                            <Typography
+                                                sx={{
+                                                    fontWeight: 600,
+                                                    lineHeight: 1.7,
+                                                    color: i === 1 ? "rgba(255,255,255,0.92)" : "#475467",
+                                                }}
+                                            >
+                                                {item}
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </CardContent>
+                </Card>
             </Container>
 
             {/* CTA */}

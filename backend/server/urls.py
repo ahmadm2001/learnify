@@ -18,6 +18,7 @@ from core.views import (
     admin_all_users,
     admin_toggle_user_status,
     admin_delete_user,
+    contact_us,
 )
 from users.views import (
     EmailLoginView,
@@ -50,6 +51,7 @@ urlpatterns = [
     # Health check
     path("api/health/", health),
     path("api/ide/", include("ide.urls")),
+    path("api/contact/", contact_us),
     # -------------------------
     # AUTHENTICATION
     # -------------------------
