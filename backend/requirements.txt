@@ -14,3 +14,7 @@ Pillow>=10.0
 # External services
 openai>=1.0
 requests>=2.31
+
+# Production serving (Azure App Service)
+gunicorn>=22.0
+whitenoise>=6.6

@@ -25,6 +25,14 @@ ALLOWED_HOSTS = [
     if h
 ]
 
+# HTTPS origins trusted for CSRF (needed behind Azure's proxy, e.g. the
+# Django admin on https://<app>.azurewebsites.net). Comma separated.
+CSRF_TRUSTED_ORIGINS = [
+    o.strip()
+    for o in env("CSRF_TRUSTED_ORIGINS", default="").split(",")
+    if o.strip()
+]
+
 # --------------------------------------------------
 # Installed apps
 # --------------------------------------------------
@@ -54,6 +62,9 @@ INSTALLED_APPS = [
 # --------------------------------------------------
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    # WhiteNoise serves collected static files directly from the app process,
+    # so no separate web server is needed on Azure App Service.
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -96,6 +107,8 @@ DATABASES = {
         "PASSWORD": env("DB_PASSWORD", default=env("DB_PASS", default="")),
         "HOST": env("DB_HOST", default="127.0.0.1"),
         "PORT": env("DB_PORT", default="5432"),
+        # Azure Database for PostgreSQL requires TLS; local dev stays lenient.
+        "OPTIONS": {"sslmode": env("DB_SSLMODE", default="prefer")},
     }
 }
 
@@ -160,9 +173,9 @@ JUDGE0_URL = env(
 # --------------------------------------------------
 # ZOOM CONFIG 🔥
 # --------------------------------------------------
-ZOOM_ACCOUNT_ID = env("ZOOM_ACCOUNT_ID")
-ZOOM_CLIENT_ID = env("ZOOM_CLIENT_ID")
-ZOOM_CLIENT_SECRET = env("ZOOM_CLIENT_SECRET")
+ZOOM_ACCOUNT_ID = env("ZOOM_ACCOUNT_ID", default="")
+ZOOM_CLIENT_ID = env("ZOOM_CLIENT_ID", default="")
+ZOOM_CLIENT_SECRET = env("ZOOM_CLIENT_SECRET", default="")
 
 
 # --------------------------------------------------

@@ -1,0 +1,3 @@
+# Azure App Service (Oryx) detects a Python app by this root file.
+# The real dependency list lives with the backend code.
+-r backend/requirements.txt
