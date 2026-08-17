@@ -2058,7 +2058,18 @@ class PaymentSuccessView(APIView):
 from openai import OpenAI
 from django.conf import settings
 
-client = OpenAI(api_key=settings.OPENAI_API_KEY)
+
+def get_openai_client():
+    """Create the OpenAI client on demand.
+
+    Instantiating it at module level makes the whole application fail to start
+    when OPENAI_API_KEY is not configured, because Django imports this module
+    while loading the URL conf. Returning None keeps the failure scoped to the
+    single endpoint that needs the key.
+    """
+    if not settings.OPENAI_API_KEY:
+        return None
+    return OpenAI(api_key=settings.OPENAI_API_KEY)
 
 
 class CourseChatbotView(APIView):
@@ -2076,6 +2087,13 @@ class CourseChatbotView(APIView):
             course = Course.objects.get(id=course_id)
         except Course.DoesNotExist:
             return Response({"detail": "Course not found"}, status=404)
+
+        client = get_openai_client()
+        if client is None:
+            return Response(
+                {"detail": "AI tutor is not configured on this server."},
+                status=503,
+            )
 
         try:
             completion = client.chat.completions.create(
