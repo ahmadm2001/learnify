@@ -165,6 +165,24 @@ The actual `.env` file is excluded by `.gitignore` and should never be committed
 
 ---
 
+## Running the tests
+
+The backend ships with an automated API test suite (pytest + pytest-django),
+the automated translation of the manual test plan from the project report:
+authentication, profile management, the course catalogue and cart,
+role-based access control, and the AI tutor endpoint.
+
+```bash
+cd backend
+pip install -r requirements-dev.txt
+pytest
+```
+
+The suite runs against a temporary test database, so it never touches your
+development data.
+
+---
+
 ## Team
 
 - Ahmad Mashal
