@@ -4,6 +4,9 @@ Social learning platform for online courses with an integrated AI tutor and sand
 
 Final-year capstone project in Software Engineering, Sami Shamoon College of Engineering.
 
+**Live API:** https://learnify-ahmad-axg6had3hcfhbhbr.israelcentral-01.azurewebsites.net/api/health/
+running on Azure App Service (Linux) with Azure Database for PostgreSQL, deployed through GitHub Actions on every push to `main`.
+
 ---
 
 ## About
